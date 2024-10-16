@@ -1,35 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import logo from '/logo.svg'
-import './App.css'
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
+import Home from "./pages/Home";
+import CreateEmployer from "./pages/create-employe/CreateEmployer";
+import EmployeeList from "./pages/EmployeeList";
+import NotFound from "./pages/NotFound";
+import Navigation from "./layout/Navigation";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={logo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {/* Define the routes */}
+      <Navigation />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/create-employer" element={<CreateEmployer />} />
+        <Route path="/employees" element={<EmployeeList />} />
+        {/* Catch-all route for 404 page */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

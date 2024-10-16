@@ -1,0 +1,11 @@
+.select-item {
+    color: #000; /* Couleur de texte noire */
+    padding: 0.5rem 1rem; /* Espacement */
+    transition: background-color 0.2s; /* Animation de transition */
+  }
+  
+  .select-item:hover {
+    background-color: #e0e0e0; /* Fond gris clair au survol */
+    cursor: pointer; /* Curseur en forme de main */
+  }
+  
