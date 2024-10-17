@@ -1,5 +1,4 @@
 import { useController, useFormContext } from "react-hook-form";
-import * as React from "react";
 import { format } from "date-fns";
 import { fr } from "date-fns/locale";
 import { Calendar as CalendarIcon } from "lucide-react";
@@ -10,8 +9,13 @@ import {
 } from "../../components/ui/popover";
 import { Calendar } from "../../components/ui/calendar";
 import { Button } from "../../components/ui/button";
-import { cn } from "../../lib/utils";
-import { Label } from "../../components/ui/label";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../../components/ui/form";
 
 interface DatePickerFieldProps {
   name: string;
@@ -19,49 +23,57 @@ interface DatePickerFieldProps {
 }
 
 const DatePickerField: React.FC<DatePickerFieldProps> = ({ name, label }) => {
-  const { control } = useFormContext(); // To get the form context from react-hook-form
-  const { field } = useController({
+  const { control } = useFormContext();
+  const { field, fieldState } = useController({
     name,
     control,
+    defaultValue: undefined,
   });
 
-  const [selectedDate, setSelectedDate] = React.useState<Date | null>(null);
-
   return (
-    <div>
-      <Label className="block text-sm font-medium text-gray-700">{label}</Label>
-      <Popover>
-        <PopoverTrigger asChild>
-          <Button
-            variant={"outline"}
-            className={cn(
-              "w-full justify-start text-left font-normal rounded",
-              !selectedDate && "text-muted-foreground"
-            )}
-          >
-            <CalendarIcon className="mr-2 h-4 w-4" />
-            {selectedDate ? (
-              format(selectedDate, "dd/MM/yyyy", { locale: fr })
-            ) : (
-              <span>Choisir une date</span>
-            )}{" "}
-            {/* Format français ici */}
-          </Button>
-        </PopoverTrigger>
-        <PopoverContent className="w-auto p-0">
-          <Calendar
-            className="rounded bg-[whitesmoke]"
-            mode="single"
-            selected={selectedDate || undefined}
-            onSelect={(date) => {
-              setSelectedDate(date ?? null);
-              field.onChange(date ?? null);
-            }}
-            initialFocus
-          />
-        </PopoverContent>
-      </Popover>
-    </div>
+    <FormField
+      control={control}
+      name={name}
+      render={() => (
+        <FormItem>
+          <FormLabel>{label}</FormLabel>
+          <FormControl>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  variant={"outline"}
+                  className={`w-full justify-start text-left font-normal rounded ${
+                    !field.value ? "text-muted-foreground" : ""
+                  } ${fieldState.error ? "border-red-500" : ""}`} // Gestion des erreurs
+                >
+                  <CalendarIcon className="mr-2 h-4 w-4" />
+                  {field.value ? (
+                    format(field.value, "dd/MM/yyyy", { locale: fr })
+                  ) : (
+                    <span>Choisir une date</span>
+                  )}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0">
+                <Calendar
+                  className="rounded bg-[whitesmoke]"
+                  mode="single"
+                  selected={field.value}
+                  onSelect={field.onChange} // Utilisation de field.onChange
+                  initialFocus
+                />
+              </PopoverContent>
+            </Popover>
+          </FormControl>
+          {/* Affichage des messages d'erreur */}
+          {fieldState.error && (
+            <FormMessage className="text-red-500">
+              {fieldState.error.message}
+            </FormMessage>
+          )}
+        </FormItem>
+      )}
+    />
   );
 };
 

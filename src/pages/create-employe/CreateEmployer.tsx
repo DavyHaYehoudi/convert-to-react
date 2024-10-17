@@ -16,8 +16,8 @@ const CreateEmployer = () => {
     defaultValues: {
       firstName: "",
       lastName: "",
-      dateOfBirth: "",
-      startDate: "",
+      dateOfBirth: undefined,
+      startDate: undefined,
       street: "",
       city: "",
       state: "",
@@ -25,10 +25,10 @@ const CreateEmployer = () => {
       department: "",
     },
   });
-  // Gestion de la soumission du formulaire
+
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
-    setConfirmation(true); // Affiche la confirmation après enregistrement
+    setConfirmation(true);
   }
 
   return (
@@ -87,8 +87,7 @@ const CreateEmployer = () => {
             Enregistrer
           </Button>
         </form>
-      </Form> 
-      {/* Message de confirmation */}
+      </Form>
       {confirmation && (
         <div className="modal">
           <p className="text-green-500 m-2">Employé créé avec succès !</p>
@@ -97,4 +96,5 @@ const CreateEmployer = () => {
     </div>
   );
 };
+
 export default CreateEmployer;

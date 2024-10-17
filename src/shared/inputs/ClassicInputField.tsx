@@ -6,7 +6,7 @@ import {
   FormMessage,
 } from "../../components/ui/form";
 import { Input } from "../../components/ui/input";
-import { useFormContext } from "react-hook-form";
+import { useController, useFormContext } from "react-hook-form";
 
 interface ClassicInputFieldProps {
   name: string;
@@ -22,6 +22,11 @@ const ClassicInputField: React.FC<ClassicInputFieldProps> = ({
   placeholder,
 }) => {
   const { control } = useFormContext();
+  const { fieldState } = useController({
+    name,
+    control,
+    defaultValue: undefined,
+  });
 
   return (
     <FormField
@@ -35,7 +40,9 @@ const ClassicInputField: React.FC<ClassicInputFieldProps> = ({
               type={type}
               placeholder={placeholder}
               {...field}
-              className="rounded"
+              className={`rounded ${
+                !field.value ? "text-muted-foreground" : ""
+              } ${fieldState.error ? "border-red-500" : ""}`}
             />
           </FormControl>
           <FormMessage className="text-red-500" />
