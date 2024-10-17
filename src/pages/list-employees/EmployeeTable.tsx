@@ -4,6 +4,8 @@ import {
   getCoreRowModel,
   getPaginationRowModel,
   useReactTable,
+  getFilteredRowModel,
+  ColumnFiltersState
 } from "@tanstack/react-table";
 import { Button } from "../../components/ui/button";
 import {
@@ -23,6 +25,7 @@ import {
 } from "../../components/ui/select";
 import { Employee } from "./employee.type";
 import { columnsTable } from "./columnsTable";
+import { Input } from "../../components/ui/input";
 
 // Définir les colonnes du tableau
 const columns = columnsTable;
@@ -36,20 +39,33 @@ export function EmployeeTable({ data }: EmployeeTableProps) {
     pageIndex: 0,
     pageSize: 10,
   });
-
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    []
+  )
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    onColumnFiltersChange: setColumnFilters,
     state: {
       pagination,
+      columnFilters,
     },
     onPaginationChange: setPagination,
   });
 
   return (
     <div>
+      <Input
+        placeholder="Filtrer par nos de familles..."
+        value={(table.getColumn("lastName")?.getFilterValue() as string) ?? ""}
+        onChange={(event) =>
+          table.getColumn("lastName")?.setFilterValue(event.target.value)
+        }
+        className="max-w-sm"
+      />
       <div className="flex items-center justify-between mb-4">
         <Select
           onValueChange={(value) =>
@@ -59,7 +75,7 @@ export function EmployeeTable({ data }: EmployeeTableProps) {
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder={`${pagination.pageSize} items`} />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="bg-[#242424] text-[whitesmoke]">
             <SelectItem value="1">1</SelectItem>
             <SelectItem value="5">5</SelectItem>
             <SelectItem value="10">10</SelectItem>
@@ -97,14 +113,14 @@ export function EmployeeTable({ data }: EmployeeTableProps) {
           ) : (
             <TableRow>
               <TableCell colSpan={columns.length} className="h-24 text-center">
-                No results.
+                Aucun employé
               </TableCell>
             </TableRow>
           )}
         </TableBody>
       </Table>
 
-      <div className="flex items-center justify-end space-x-2 py-4">
+      <div className="flex items-center justify-end space-x-2 py-4 text-[whitesmoke]">
         <Button
           variant="outline"
           onClick={() => table.previousPage()}

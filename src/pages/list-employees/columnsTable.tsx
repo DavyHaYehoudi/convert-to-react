@@ -2,6 +2,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Button } from "../../components/ui/button";
 import { Employee } from "./employee.type";
 import { formatDate } from "../../utils/FormatDate";
+import { ArrowUpDown } from "lucide-react"
 
 // Définir les colonnes du tableau
 export const columnsTable: ColumnDef<Employee>[] = [
@@ -13,8 +14,10 @@ export const columnsTable: ColumnDef<Employee>[] = [
         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
       >
         Prénom
+        <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
+    cell: ({ row }) => <div className="lowercase">{row.getValue("firstName")}</div>
   },
   {
     accessorKey: "lastName",
