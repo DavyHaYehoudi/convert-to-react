@@ -1,5 +1,13 @@
 import React, { createContext, useState } from "react";
 
+interface FormContextType {
+  employees: FormData[];
+  addEmployee: (employee: FormData) => void;
+}
+
+export const FormContext = createContext<FormContextType | undefined>(
+  undefined
+);
 type FormData = {
   firstName: string;
   lastName: string;
@@ -12,28 +20,17 @@ type FormData = {
   department: string;
 };
 
-type FormContextType = {
-  formData: FormData;
-  setFormData: React.Dispatch<React.SetStateAction<FormData>>;
-};
+export const FormProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  const [employees, setEmployees] = useState<FormData[]>([]);
 
-export const FormContext = createContext<FormContextType | undefined>(undefined);
-
-export const FormProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [formData, setFormData] = useState<FormData>({
-    firstName: "",
-    lastName: "",
-    dateOfBirth: undefined,
-    startDate: undefined,
-    street: "",
-    city: "",
-    region: "",
-    zipCode: "",
-    department: "",
-  });
+  const addEmployee = (employee: FormData) => {
+    setEmployees((prevEmployees) => [...prevEmployees, employee]);
+  };
 
   return (
-    <FormContext.Provider value={{ formData, setFormData }}>
+    <FormContext.Provider value={{ employees, addEmployee }}>
       {children}
     </FormContext.Provider>
   );

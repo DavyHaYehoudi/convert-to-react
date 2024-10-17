@@ -13,17 +13,27 @@ import { useFormContext } from "../../store/UseFormContext";
 
 const CreateEmployer = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { formData, setFormData } = useFormContext();
-  console.log('formData:', formData)
+  const { addEmployee, employees } = useFormContext();
+  console.log("employees:", employees);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: formData
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      dateOfBirth: undefined,
+      startDate: undefined,
+      street: "",
+      city: "",
+      region: "",
+      zipCode: "",
+      department: "",
+    },
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
-    setFormData(values);
+    addEmployee(values); // Ajoute l'employé dans la liste des employés du contexte
     setIsOpen(true); // Ouvre la modale à la soumission réussie
     form.reset();
   }
@@ -123,11 +133,15 @@ const CreateEmployer = () => {
       <Modal
         isOpen={isOpen}
         onClose={closeModal}
-        title="Création réussie"
+        title="ENREGISTREMENT EFFECTUE"
         showCancelButton={false}
         okButtonText="Fermer"
       >
-        <p>Employé créé avec succès !</p>
+        <p>
+          {`${employees[employees.length - 1].firstName} ${
+            employees[employees.length - 1].lastName
+          } vient d'être ajouté à la liste.`}{" "}
+        </p>
       </Modal>
     </div>
   );
