@@ -9,27 +9,21 @@ import { Form } from "../../components/ui/form";
 import DatePickerField from "../../shared/inputs/DatePicker";
 import ClassicInputField from "../../shared/inputs/ClassicInputField";
 import SelectField from "../../shared/inputs/SelectField";
+import { useFormContext } from "../../store/UseFormContext";
 
 const CreateEmployer = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { formData, setFormData } = useFormContext();
+  console.log('formData:', formData)
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      firstName: "",
-      lastName: "",
-      dateOfBirth: undefined,
-      startDate: undefined,
-      street: "",
-      city: "",
-      region: "",
-      zipCode: "",
-      department: "",
-    },
+    defaultValues: formData
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
+    setFormData(values);
     setIsOpen(true); // Ouvre la modale à la soumission réussie
     form.reset();
   }
