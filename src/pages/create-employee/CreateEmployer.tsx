@@ -137,11 +137,11 @@ const CreateEmployer = () => {
         showCancelButton={false}
         okButtonText="Fermer"
       >
-        <p>
+      {employees&&employees.length>0&&  <p>
           {`${employees[employees.length - 1].firstName} ${
             employees[employees.length - 1].lastName
           } vient d'être ajouté à la liste.`}{" "}
-        </p>
+        </p>}
       </Modal>
     </div>
   );
