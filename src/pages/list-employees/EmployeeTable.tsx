@@ -32,6 +32,7 @@ import { Input } from "../../components/ui/input";
 // Définir les colonnes du tableau
 const columns = columnsTable;
 
+// Définir le typage des props
 interface EmployeeTableProps {
   data: Employee[];
 }

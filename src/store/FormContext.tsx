@@ -1,5 +1,7 @@
 import React, { createContext, useState } from "react";
 
+
+// Définir le typage des données stockées à partager
 interface FormContextType {
   employees: FormData[];
   addEmployee: (employee: FormData) => void;
@@ -20,6 +22,7 @@ type FormData = {
   department: string;
 };
 
+// Configuration du provider lié au contexte
 export const FormProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {

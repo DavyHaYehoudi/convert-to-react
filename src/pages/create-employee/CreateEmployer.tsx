@@ -16,6 +16,7 @@ const CreateEmployer = () => {
   const { addEmployee, employees } = useFormContext();
   console.log("employees:", employees);
 
+  // Valeurs par défaut des champs du formulaire et typage par inférence
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -35,7 +36,7 @@ const CreateEmployer = () => {
     console.log(values);
     addEmployee(values); // Ajoute l'employé dans la liste des employés du contexte
     setIsOpen(true); // Ouvre la modale à la soumission réussie
-    form.reset();
+    form.reset(); // Réinitialise le formulaire d'enregistrement
   }
 
   const closeModal = () => setIsOpen(false);
