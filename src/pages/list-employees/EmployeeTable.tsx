@@ -83,7 +83,7 @@ export function EmployeeTable({ data }: EmployeeTableProps) {
           </SelectContent>
         </Select>
         <Input
-          placeholder="Filtrer par nos de familles..."
+          placeholder="Filtrer par nom de famille..."
           value={
             (table.getColumn("lastName")?.getFilterValue() as string) ?? ""
           }

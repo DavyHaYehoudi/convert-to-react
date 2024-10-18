@@ -1,50 +1,118 @@
-# React + TypeScript + Vite
+# HRnet - Migration vers React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Ce projet est une refonte complète de l'application HRnet, qui avait été initialement développée en **jQuery**. Nous avons modernisé l'application en la migrant vers **React**, en y intégrant un plugin de modale personnalisable et en améliorant les fonctionnalités globales de l'application.
 
-Currently, two official plugins are available:
+## Synthèse du Projet
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Contexte
 
-## Expanding the ESLint configuration
+HRnet est une application web de gestion des employés. L'objectif de ce projet de refonte était de moderniser le code, rendre l'application plus maintenable et performante, tout en introduisant de nouvelles fonctionnalités et en améliorant l'expérience utilisateur.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Pages Modernisées
 
-- Configure the top-level `parserOptions` property like this:
+- **Page d'Accueil HRnet** :
+  - La page d'accueil introduit le projet et propose une navigation vers les différentes sections de l'application via **React Router**.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- **Page de Création d'un Employé** :
+  - Un formulaire simple permet d'ajouter un nouvel employé.
+  - Une **modale personnalisée** s'ouvre lors de la soumission du formulaire pour confirmer l'ajout.
+
+- **Page de la Liste des Employés** :
+  - Affiche la liste des employés avec des fonctionnalités de tri, filtrage, et pagination.
+  - L'intégration de **React Table** permet une gestion efficace et interactive des données.
+
+## Plugin de Modale Personnalisée
+
+Nous avons développé un plugin de **modale réutilisable** en React, qui remplace les anciennes boîtes de dialogue jQuery. Ce composant est personnalisable, permettant d'ajuster les boutons, les styles, et les actions via des propriétés (`props`).
+
+## Installation du Plugin de Modale
+
+Pour utiliser le plugin de modale personnalisé dans ce projet React, vous pouvez l'installer via npm :
+
+```bash
+npm install @davy-dev/react-modal-plugin
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Bibliothèques et Outils Utilisés
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### Dépendances Principales
+- **@davy-dev/react-modal-plugin** : Plugin de modale personnalisée.
+- **@hookform/resolvers** : Résolveur de schémas pour React Hook Form.
+- **@tanstack/react-table** : Gestion des tables réactives avec pagination et filtrage.
+- **react-router-dom** : Navigation et gestion des routes côté client.
+- **zod** : Validation des schémas de données.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+### UI et CSS
+- **TailwindCSS** : Framework de styles CSS utilitaire qui facilite la gestion des styles en utilisant une approche utilitaire. Il permet de créer des interfaces réactives et modulables.
+- **Radix UI** : Composants UI accessibles pour React, assurant que les éléments d'interface utilisateur respectent les normes d'accessibilité. Ces composants sont facilement personnalisables.
+- **ShadCN UI** : Une collection de composants UI qui combine **Radix UI** pour l'accessibilité et **TailwindCSS** pour la stylisation, offrant ainsi des composants modernes, flexibles et accessibles.
+- **lucide-react** : Icônes personnalisables pour React.
+
+### Formulaires et Dates
+- **react-hook-form** : Gestion des formulaires réactifs, permettant de simplifier la collecte et la validation des données des utilisateurs.
+- **date-fns** : Bibliothèque pour la manipulation et le formatage des dates en JavaScript.
+
+### Outils de Développement
+- **vite** : Bundler et serveur de développement ultra-rapide, optimisé pour les projets React et TypeScript.
+- **eslint** : Outil de linting pour maintenir une qualité de code et garantir une cohérence dans le formatage.
+- **typescript** : Langage de programmation typé pour JavaScript, apportant sécurité et robustesse dans le code.
+
+## Installation et Lancement du Projet
+
+### Cloner le Projet
+Tout d'abord, clonez le projet depuis le dépôt GitHub :
+
+```bash
+git clone https://github.com/DavyHaYehoudi/convert-to-react
 ```
+### Accéder au Dossier du Projet
+Déplacez-vous dans le dossier du projet cloné :
+
+```bash
+cd converting-to-react
+```
+
+### Installer les Dépendances
+```bash
+npm install
+```
+Ou 
+```bash
+yarn install
+```
+
+### Lancer l'Application en Mode Développement
+```bash
+npm run dev
+```
+ou
+```bash
+yarn dev
+```
+### Générer le Build pour la Production
+```bash
+npm run build
+```
+ou
+```bash
+yarn build
+```
+
+## Illustration du Projet
+
+### Page d'Accueil
+
+![Page d'Accueil](public/homepage.png)
+
+### Formulaire de Création d'Employé
+
+![Formulaire de Création d'Employé](public/create-employee.png)
+
+### Liste des Employés
+
+![Liste des Employés](public/employee-list.png)
+
+### Exemple de Modale
+
+![Exemple de Modale](public/modal-example.png)
+
