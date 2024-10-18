@@ -5,7 +5,9 @@ import {
   getPaginationRowModel,
   useReactTable,
   getFilteredRowModel,
-  ColumnFiltersState
+  ColumnFiltersState,
+  SortingState,
+  getSortedRowModel,
 } from "@tanstack/react-table";
 import { Button } from "../../components/ui/button";
 import {
@@ -41,10 +43,14 @@ export function EmployeeTable({ data }: EmployeeTableProps) {
   });
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
-  )
+  );
+  const [sorting, setSorting] = React.useState<SortingState>([]);
+
   const table = useReactTable({
     data,
     columns,
+    onSortingChange: setSorting,
+    getSortedRowModel: getSortedRowModel(),
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
@@ -52,37 +58,39 @@ export function EmployeeTable({ data }: EmployeeTableProps) {
     state: {
       pagination,
       columnFilters,
+      sorting,
     },
     onPaginationChange: setPagination,
   });
 
   return (
     <div>
-      <Input
-        placeholder="Filtrer par nos de familles..."
-        value={(table.getColumn("lastName")?.getFilterValue() as string) ?? ""}
-        onChange={(event) =>
-          table.getColumn("lastName")?.setFilterValue(event.target.value)
-        }
-        className="max-w-sm"
-      />
       <div className="flex items-center justify-between mb-4">
         <Select
           onValueChange={(value) =>
             setPagination({ ...pagination, pageSize: Number(value) })
           }
         >
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder={`${pagination.pageSize} items`} />
+          <SelectTrigger className="w-[180px] rounded">
+            <SelectValue placeholder={`${pagination.pageSize} entrées`} />
           </SelectTrigger>
           <SelectContent className="bg-[#242424] text-[whitesmoke]">
-            <SelectItem value="1">1</SelectItem>
             <SelectItem value="5">5</SelectItem>
             <SelectItem value="10">10</SelectItem>
             <SelectItem value="20">20</SelectItem>
             <SelectItem value="50">50</SelectItem>
           </SelectContent>
         </Select>
+        <Input
+          placeholder="Filtrer par nos de familles..."
+          value={
+            (table.getColumn("lastName")?.getFilterValue() as string) ?? ""
+          }
+          onChange={(event) =>
+            table.getColumn("lastName")?.setFilterValue(event.target.value)
+          }
+          className="max-w-sm rounded"
+        />
       </div>
       <Table>
         <TableHeader>

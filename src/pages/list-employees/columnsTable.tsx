@@ -8,6 +8,7 @@ import { ArrowUpDown } from "lucide-react"
 export const columnsTable: ColumnDef<Employee>[] = [
   {
     accessorKey: "firstName",
+    enableSorting: true,
     header: ({ column }) => (
       <Button
         variant="ghost"
@@ -21,6 +22,7 @@ export const columnsTable: ColumnDef<Employee>[] = [
   },
   {
     accessorKey: "lastName",
+    enableSorting: true,
     header: ({ column }) => (
       <Button
         variant="ghost"
@@ -32,6 +34,7 @@ export const columnsTable: ColumnDef<Employee>[] = [
   },
   {
     accessorKey: "dateOfBirth",
+    enableSorting: true,
     header: ({ column }) => (
       <Button
         variant="ghost"
@@ -44,6 +47,7 @@ export const columnsTable: ColumnDef<Employee>[] = [
   },
   {
     accessorKey: "startDate",
+    enableSorting: true,
     header: ({ column }) => (
       <Button
         variant="ghost"
@@ -56,6 +60,7 @@ export const columnsTable: ColumnDef<Employee>[] = [
   },
   {
     accessorKey: "street",
+    enableSorting: true,
     header: ({ column }) => (
       <Button
         variant="ghost"
@@ -67,6 +72,7 @@ export const columnsTable: ColumnDef<Employee>[] = [
   },
   {
     accessorKey: "city",
+    enableSorting: true,
     header: ({ column }) => (
       <Button
         variant="ghost"
@@ -78,6 +84,7 @@ export const columnsTable: ColumnDef<Employee>[] = [
   },
   {
     accessorKey: "region",
+    enableSorting: true,
     header: ({ column }) => (
       <Button
         variant="ghost"
@@ -89,6 +96,7 @@ export const columnsTable: ColumnDef<Employee>[] = [
   },
   {
     accessorKey: "zipCode",
+    enableSorting: true,
     header: ({ column }) => (
       <Button
         variant="ghost"
@@ -100,6 +108,7 @@ export const columnsTable: ColumnDef<Employee>[] = [
   },
   {
     accessorKey: "department",
+    enableSorting: true,
     header: ({ column }) => (
       <Button
         variant="ghost"
