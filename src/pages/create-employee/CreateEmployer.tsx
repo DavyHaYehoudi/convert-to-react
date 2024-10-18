@@ -136,12 +136,19 @@ const CreateEmployer = () => {
         title="ENREGISTREMENT EFFECTUE"
         showCancelButton={false}
         okButtonText="Fermer"
+        // okButtonClassName="text-red-ok-button"
       >
-      {employees&&employees.length>0&&  <p>
-          {`${employees[employees.length - 1].firstName} ${
-            employees[employees.length - 1].lastName
-          } vient d'être ajouté à la liste.`}{" "}
-        </p>}
+        {employees && employees.length > 0 && (
+          <div className="m-5">
+            <span className="font-bold">
+              {" "}
+              {`${employees[employees.length - 1].firstName} ${
+                employees[employees.length - 1].lastName
+              }`}{" "}
+            </span>
+            <span> {`vient d'être ajouté à la liste.`} </span>
+          </div>
+        )}
       </Modal>
     </div>
   );
