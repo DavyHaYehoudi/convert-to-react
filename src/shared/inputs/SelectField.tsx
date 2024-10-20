@@ -42,7 +42,7 @@ const SelectField = ({
               name={name}
               control={control}
               render={({ field: { onChange, value } }) => (
-                <Select onValueChange={onChange} value={value}>
+                <Select aria-labelledby={label} onValueChange={onChange} value={value}>
                   <SelectTrigger className="w-full">
                     <SelectValue placeholder={placeholder} />
                   </SelectTrigger>

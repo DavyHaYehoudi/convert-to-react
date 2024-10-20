@@ -21,6 +21,23 @@ HRnet est une application web de gestion des employés. L'objectif de ce projet 
   - Affiche la liste des employés avec des fonctionnalités de tri, filtrage, et pagination.
   - L'intégration de **React Table** permet une gestion efficace et interactive des données.
 
+  ### Comparaison des Performances Lighthouse
+
+Pour illustrer l'impact de la modernisation de l'application, nous avons effectué une comparaison des performances Lighthouse entre l'ancienne version et la version modernisée de notre application. Les résultats sont présentés ci-dessous pour les deux pages clés : la page de création d'un employé et la page de la liste des employés.
+
+#### Page de Création d'un Employé
+
+| Ancienne Version | Nouvelle Version |
+|------------------|------------------|
+| ![Ancienne Version - Page de Création d'un Employé](public/old-1.png) | ![Nouvelle Version - Page de Création d'un Employé](public/new-1.png) |
+
+#### Page de la Liste des Employés
+
+| Ancienne Version | Nouvelle Version |
+|------------------|------------------|
+| ![Ancienne Version - Page de la Liste des Employés](public/old-2.png) | ![Nouvelle Version - Page de la Liste des Employés](public/new-2.png) |
+
+
 ## Plugin de Modale Personnalisée
 
 Nous avons développé un plugin de **modale réutilisable** en React, qui remplace les anciennes boîtes de dialogue jQuery. Ce composant est personnalisable, permettant d'ajuster les boutons, les styles, et les actions via des propriétés (`props`).
