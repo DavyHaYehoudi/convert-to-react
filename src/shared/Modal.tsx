@@ -15,14 +15,8 @@ const App = () => {
         onClose={closeModal}
         title="Titre de la Modale"
         showCancelButton={true}
-        showConfirmButton={true}
         cancelButtonText="Annuler"
-        confirmButtonText="Confirmer"
         onCancel={closeModal}
-        onConfirm={() => {
-          alert('Action confirmée!');
-          closeModal();
-        }}
       >
         <p>Contenu de la modale</p>
       </Modal>
