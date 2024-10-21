@@ -6,13 +6,13 @@ const Navigation = () => {
       <nav className='m-10 text-[whitesmoke]'>
         <ul>
           <li className='hover:underline uppercase'>
-            <Link to="/">Accueil</Link>
+            <Link to="/">Home</Link>
           </li>
           <li className='hover:underline uppercase'>
-            <Link to="/create-employer">Creer un employe</Link>
+            <Link to="/create-employer">Create employee</Link>
           </li>
           <li className='hover:underline uppercase'>
-            <Link to="/employees">Liste des employes</Link>
+            <Link to="/employees">Current employees</Link>
           </li>
         </ul>
       </nav>

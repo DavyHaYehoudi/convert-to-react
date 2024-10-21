@@ -73,7 +73,7 @@ export function EmployeeTable({ data }: EmployeeTableProps) {
           }
         >
           <SelectTrigger className="w-[180px] rounded">
-            <SelectValue placeholder={`${pagination.pageSize} entrées`} />
+            <SelectValue placeholder={`${pagination.pageSize} entries`} />
           </SelectTrigger>
           <SelectContent className="bg-[#242424] text-[whitesmoke]">
             <SelectItem value="5">5</SelectItem>
@@ -83,13 +83,8 @@ export function EmployeeTable({ data }: EmployeeTableProps) {
           </SelectContent>
         </Select>
         <Input
-          placeholder="Filtrer par nom de famille..."
-          value={
-            (table.getColumn("lastName")?.getFilterValue() as string) ?? ""
-          }
-          onChange={(event) =>
-            table.getColumn("lastName")?.setFilterValue(event.target.value)
-          }
+          placeholder="Rechercher..."
+          onChange={(e) => table.setGlobalFilter(String(e.target.value))}
           className="max-w-sm rounded"
         />
       </div>
@@ -130,6 +125,9 @@ export function EmployeeTable({ data }: EmployeeTableProps) {
       </Table>
 
       <div className="flex items-center justify-end space-x-2 py-4 text-[whitesmoke]">
+        <div className="flex-1 text-sm text-muted-foreground">
+          {table.getFilteredRowModel().rows.length} row(s) found
+        </div>
         <Button
           variant="outline"
           onClick={() => table.previousPage()}

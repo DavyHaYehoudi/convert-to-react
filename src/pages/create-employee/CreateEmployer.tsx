@@ -10,6 +10,7 @@ import DatePickerField from "../../shared/inputs/DatePicker";
 import ClassicInputField from "../../shared/inputs/ClassicInputField";
 import SelectField from "../../shared/inputs/SelectField";
 import { useFormContext } from "../../store/UseFormContext";
+import { states } from "./states";
 
 const CreateEmployer = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,7 +27,7 @@ const CreateEmployer = () => {
       startDate: undefined,
       street: "",
       city: "",
-      region: "",
+      state: "",
       zipCode: "",
       department: "",
     },
@@ -45,87 +46,66 @@ const CreateEmployer = () => {
     <div className="max-w-lg mx-auto mt-10 p-6 bg-white rounded-2xl shadow-lg">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-          <h2 className="text-2xl font-bold">Créer un employé</h2>
+          <h2 className="text-2xl font-bold">Create Employee</h2>
 
           <ClassicInputField
             name="firstName"
-            label="Prénom"
+            label="First Name"
             placeholder="John"
           />
-          <ClassicInputField name="lastName" label="Nom" placeholder="Doe" />
-          <DatePickerField name="dateOfBirth" label="Date de naissance" />
-          <DatePickerField name="startDate" label="Date de début" />
+          <ClassicInputField
+            name="lastName"
+            label="Last Name"
+            placeholder="Doe"
+          />
+          <DatePickerField name="dateOfBirth" label="Date of Birth" />
+          <DatePickerField name="startDate" label="Start Date" />
 
           <fieldset className="space-y-4">
-            <legend className="text-lg font-semibold">Adresse</legend>
+            <legend className="text-lg font-semibold">Address</legend>
             <ClassicInputField
               name="street"
-              label="Rue"
+              label="Street"
               placeholder="123 Main St"
             />
-            <ClassicInputField name="city" label="Ville" placeholder="Paris" />
-            {/* <ClassicInputField name="state" label="État" placeholder="Île-de-France" /> */}
+            <ClassicInputField
+              name="city"
+              label="City"
+              placeholder="New York"
+            />
             <SelectField
-              name="region"
-              label="Région"
-              options={[
-                {
-                  value: "Auvergne-Rhône-Alpes",
-                  label: "Auvergne-Rhône-Alpes",
-                },
-                {
-                  value: "Bourgogne-Franche-Comté",
-                  label: "Bourgogne-Franche-Comté",
-                },
-                { value: "Bretagne", label: "Bretagne" },
-                { value: "Centre-Val de Loire", label: "Centre-Val de Loire" },
-                { value: "Corse", label: "Corse" },
-                { value: "Grand Est", label: "Grand Est" },
-                { value: "Hauts-de-France", label: "Hauts-de-France" },
-                { value: "Île-de-France", label: "Île-de-France" },
-                { value: "Normandie", label: "Normandie" },
-                { value: "Nouvelle-Aquitaine", label: "Nouvelle-Aquitaine" },
-                { value: "Occitanie", label: "Occitanie" },
-                { value: "Pays de la Loire", label: "Pays de la Loire" },
-                {
-                  value: "Provence-Alpes-Côte d'Azur",
-                  label: "Provence-Alpes-Côte d'Azur",
-                },
-                { value: "Guadeloupe", label: "Guadeloupe" },
-                { value: "Martinique", label: "Martinique" },
-                { value: "Guyane", label: "Guyane" },
-                { value: "La Réunion", label: "La Réunion" },
-                { value: "Mayotte", label: "Mayotte" },
-              ]}
-              placeholder="Sélectionner une région"
+              name="state"
+              label="State"
+              options={states}
+              placeholder="Select a state"
             />
 
             <ClassicInputField
               name="zipCode"
-              label="Code Postal"
+              label="Zip Code"
               type="number"
-              placeholder="75000"
+              placeholder="70000"
             />
           </fieldset>
 
           <SelectField
             name="department"
-            label="Département"
+            label="Department"
             options={[
-              { value: "Sales", label: "Ventes" },
+              { value: "Sales", label: "Sales" },
               { value: "Marketing", label: "Marketing" },
-              { value: "Engineering", label: "Ingénierie" },
-              { value: "Human Resources", label: "Ressources Humaines" },
-              { value: "Legal", label: "Juridique" },
+              { value: "Engineering", label: "Engineering" },
+              { value: "Human Resources", label: "Human Resources" },
+              { value: "Legal", label: "Legal" },
             ]}
-            placeholder="Sélectionner"
+            placeholder="Select a department"
           />
 
           <Button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-600 rounded text-[whitesmoke]"
+            className="bg-blue-500 hover:bg-blue-600 rounded text-[whitesmoke] uppercase"
           >
-            Enregistrer
+            Create
           </Button>
         </form>
       </Form>
@@ -134,10 +114,11 @@ const CreateEmployer = () => {
       <Modal
         isOpen={isOpen}
         onClose={closeModal}
-        title="ENREGISTREMENT EFFECTUE"
+        title="SUCCESSFUL CREATION"
+        // title={<><h3>Rich title with HTML</h3><p>With one paragraph</p><p>and a second paragraph</p> </> }
         showCancelButton={false}
-        okButtonText="Fermer"
-        // okButtonClassName="text-red-ok-button"
+        okButtonText="Close"
+        okButtonClassName="text-red-ok-button"
       >
         {employees && employees.length > 0 && (
           <div className="m-5">
@@ -147,7 +128,7 @@ const CreateEmployer = () => {
                 employees[employees.length - 1].lastName
               }`}{" "}
             </span>
-            <span> {`vient d'être ajouté à la liste.`} </span>
+            <span> {`is added to the list of employees.`} </span>
           </div>
         )}
       </Modal>

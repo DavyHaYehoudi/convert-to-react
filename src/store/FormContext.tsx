@@ -17,7 +17,7 @@ type FormData = {
   startDate: Date | undefined;
   street: string;
   city: string;
-  region: string;
+  state: string;
   zipCode: string;
   department: string;
 };

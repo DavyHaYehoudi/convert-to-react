@@ -1,95 +1,96 @@
-# HRnet - Migration vers React
+# HRnet - Migration to React
 
-Ce projet est une refonte complète de l'application HRnet, qui avait été initialement développée en **jQuery**. Nous avons modernisé l'application en la migrant vers **React**, en y intégrant un plugin de modale personnalisable et en améliorant les fonctionnalités globales de l'application.
+This project is a complete redesign of the HRnet application, which was initially developed using **jQuery**. We modernized the application by migrating it to **React**, integrating a customizable modal plugin, and improving the overall functionality of the application.
 
-## Synthèse du Projet
+## Project Summary
 
-### Contexte
+### Background
 
-HRnet est une application web de gestion des employés. L'objectif de ce projet de refonte était de moderniser le code, rendre l'application plus maintenable et performante, tout en introduisant de nouvelles fonctionnalités et en améliorant l'expérience utilisateur.
+HRnet is a web application for employee management. The goal of this redesign project was to modernize the code, make the application more maintainable and performant, while introducing new features and enhancing the user experience.
 
-### Pages Modernisées
+### Modernized Pages
 
-- **Page d'Accueil HRnet** :
-  - La page d'accueil introduit le projet et propose une navigation vers les différentes sections de l'application via **React Router**.
+- **HRnet Home Page**:
+  - The home page introduces the project and provides navigation to the various sections of the application via **React Router**.
 
-- **Page de Création d'un Employé** :
-  - Un formulaire simple permet d'ajouter un nouvel employé.
-  - Une **modale personnalisée** s'ouvre lors de la soumission du formulaire pour confirmer l'ajout.
+- **Employee Creation Page**:
+  - A simple form allows adding a new employee.
+  - A **custom modal** opens upon form submission to confirm the addition.
 
-- **Page de la Liste des Employés** :
-  - Affiche la liste des employés avec des fonctionnalités de tri, filtrage, et pagination.
-  - L'intégration de **React Table** permet une gestion efficace et interactive des données.
+- **Employee List Page**:
+  - Displays the list of employees with sorting, filtering, and pagination features.
+  - The integration of **React Table** enables efficient and interactive data management.
 
-  ### Comparaison des Performances Lighthouse
+### Lighthouse Performance Comparison
 
-Pour illustrer l'impact de la modernisation de l'application, nous avons effectué une comparaison des performances Lighthouse entre l'ancienne version et la version modernisée de notre application. Les résultats sont présentés ci-dessous pour les deux pages clés : la page de création d'un employé et la page de la liste des employés.
+To illustrate the impact of modernizing the application, we performed a Lighthouse performance comparison between the old version and the modernized version of our application. The results are presented below for the two key pages: the employee creation page and the employee list page.
 
-#### Page de Création d'un Employé
+#### Employee Creation Page
 
-| Ancienne Version | Nouvelle Version |
-|------------------|------------------|
-| ![Ancienne Version - Page de Création d'un Employé](public/old-1.png) | ![Nouvelle Version - Page de Création d'un Employé](public/new-1.png) |
+| Old Version | New Version |
+|-------------|-------------|
+| ![Old Version - Employee Creation Page](public/old-1.png) | ![New Version - Employee Creation Page](public/new-1.png) |
 
-#### Page de la Liste des Employés
+#### Employee List Page
 
-| Ancienne Version | Nouvelle Version |
-|------------------|------------------|
-| ![Ancienne Version - Page de la Liste des Employés](public/old-2.png) | ![Nouvelle Version - Page de la Liste des Employés](public/new-2.png) |
+| Old Version | New Version |
+|-------------|-------------|
+| ![Old Version - Employee List Page](public/old-2.png) | ![New Version - Employee List Page](public/new-2.png) |
 
 
-## Plugin de Modale Personnalisée
+## Custom Modal Plugin
 
-Nous avons développé un plugin de **modale réutilisable** en React, qui remplace les anciennes boîtes de dialogue jQuery. Ce composant est personnalisable, permettant d'ajuster les boutons, les styles, et les actions via des propriétés (`props`).
+We developed a **reusable modal plugin** in React, which replaces the old jQuery dialog boxes. This component is customizable, allowing adjustments to buttons, styles, and actions via properties (`props`).
 
-## Installation du Plugin de Modale
+## Installation of the Modal Plugin
 
-Pour utiliser le plugin de modale personnalisé dans ce projet React, vous pouvez l'installer via npm :
+To use the custom modal plugin in this React project, you can install it via npm:
 
 ```bash
 npm install @davy-dev/react-modal-plugin
+
 ```
 
-## Bibliothèques et Outils Utilisés
+## Libraries and Tools Used
 
-### Dépendances Principales
-- **@davy-dev/react-modal-plugin** : Plugin de modale personnalisée.
-- **@hookform/resolvers** : Résolveur de schémas pour React Hook Form.
-- **@tanstack/react-table** : Gestion des tables réactives avec pagination et filtrage.
-- **react-router-dom** : Navigation et gestion des routes côté client.
-- **zod** : Validation des schémas de données.
+### Main Dependencies
+- **@davy-dev/react-modal-plugin**: Custom modal plugin.
+- **@hookform/resolvers**: Schema resolver for React Hook Form.
+- **@tanstack/react-table**: Reactive table management with pagination and filtering.
+- **react-router-dom**: Client-side routing and navigation management.
+- **zod**: Data schema validation.
 
-### UI et CSS
-- **TailwindCSS** : Framework de styles CSS utilitaire qui facilite la gestion des styles en utilisant une approche utilitaire. Il permet de créer des interfaces réactives et modulables.
-- **Radix UI** : Composants UI accessibles pour React, assurant que les éléments d'interface utilisateur respectent les normes d'accessibilité. Ces composants sont facilement personnalisables.
-- **ShadCN UI** : Une collection de composants UI qui combine **Radix UI** pour l'accessibilité et **TailwindCSS** pour la stylisation, offrant ainsi des composants modernes, flexibles et accessibles.
-- **lucide-react** : Icônes personnalisables pour React.
+### UI and CSS
+- **TailwindCSS**: Utility-first CSS framework that simplifies style management using a utility approach. It allows the creation of responsive and modular interfaces.
+- **Radix UI**: Accessible UI components for React, ensuring that user interface elements comply with accessibility standards. These components are easily customizable.
+- **ShadCN UI**: A collection of UI components that combines **Radix UI** for accessibility and **TailwindCSS** for styling, providing modern, flexible, and accessible components.
+- **lucide-react**: Customizable icons for React.
 
-### Formulaires et Dates
-- **react-hook-form** : Gestion des formulaires réactifs, permettant de simplifier la collecte et la validation des données des utilisateurs.
-- **date-fns** : Bibliothèque pour la manipulation et le formatage des dates en JavaScript.
+### Forms and Dates
+- **react-hook-form**: Reactive form management, simplifying user data collection and validation.
+- **date-fns**: Library for manipulating and formatting dates in JavaScript.
 
-### Outils de Développement
-- **vite** : Bundler et serveur de développement ultra-rapide, optimisé pour les projets React et TypeScript.
-- **eslint** : Outil de linting pour maintenir une qualité de code et garantir une cohérence dans le formatage.
-- **typescript** : Langage de programmation typé pour JavaScript, apportant sécurité et robustesse dans le code.
+### Development Tools
+- **vite**: Ultra-fast bundler and development server optimized for React and TypeScript projects.
+- **eslint**: Linting tool to maintain code quality and ensure consistency in formatting.
+- **typescript**: Typed programming language for JavaScript, providing security and robustness in code.
 
-## Installation et Lancement du Projet
+## Installation and Launching the Project
 
-### Cloner le Projet
-Tout d'abord, clonez le projet depuis le dépôt GitHub :
+### Clone the Project
+First, clone the project from the GitHub repository:
 
 ```bash
 git clone https://github.com/DavyHaYehoudi/convert-to-react
 ```
-### Accéder au Dossier du Projet
-Déplacez-vous dans le dossier du projet cloné :
+### Access the Project File
+Move to the cloned project folder :
 
 ```bash
 cd converting-to-react
 ```
 
-### Installer les Dépendances
+### Install Dependencies
 ```bash
 npm install
 ```
@@ -98,7 +99,7 @@ Ou
 yarn install
 ```
 
-### Lancer l'Application en Mode Développement
+### Launch the Application in Development Mode
 ```bash
 npm run dev
 ```
@@ -106,7 +107,7 @@ ou
 ```bash
 yarn dev
 ```
-### Générer le Build pour la Production
+### Generate the Build for Production
 ```bash
 npm run build
 ```
@@ -115,21 +116,21 @@ ou
 yarn build
 ```
 
-## Illustration du Projet
+## Project Illustration
 
-### Page d'Accueil
+### Home page
 
-![Page d'Accueil](public/homepage.png)
+![Home page](public/homepage.png)
 
-### Formulaire de Création d'Employé
+### Employee Creation Form
 
-![Formulaire de Création d'Employé](public/create-employee.png)
+![Employee Creation Form](public/create-employee.png)
 
-### Liste des Employés
+### List of Employees
 
-![Liste des Employés](public/employee-list.png)
+![List of Employees](public/employee-list.png)
 
-### Exemple de Modale
+### Example of Modal
 
-![Exemple de Modale](public/modal-example.png)
+![Example of Modal](public/modal-example.png)
 

@@ -1,6 +1,5 @@
 import { useController, useFormContext } from "react-hook-form";
 import { format } from "date-fns";
-import { fr } from "date-fns/locale";
 import { Calendar as CalendarIcon } from "lucide-react";
 import {
   Popover,
@@ -41,6 +40,7 @@ const DatePickerField: React.FC<DatePickerFieldProps> = ({ name, label }) => {
             <Popover>
               <PopoverTrigger asChild>
                 <Button
+                  aria-label={`Sélectionner la date pour ${label}`}
                   variant={"outline"}
                   className={`w-full justify-start text-left font-normal rounded ${
                     !field.value ? "text-muted-foreground" : ""
@@ -48,9 +48,9 @@ const DatePickerField: React.FC<DatePickerFieldProps> = ({ name, label }) => {
                 >
                   <CalendarIcon className="mr-2 h-4 w-4" />
                   {field.value ? (
-                    format(field.value, "dd/MM/yyyy", { locale: fr })
+                    format(field.value, 'yyyy/MM/dd')
                   ) : (
-                    <span>Choisir une date</span>
+                    <span>Choose a date</span>
                   )}
                 </Button>
               </PopoverTrigger>

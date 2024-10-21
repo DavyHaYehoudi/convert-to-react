@@ -1,17 +1,17 @@
 import { z } from "zod";
 
 export const formSchema = z.object({
-  firstName: z.string().nonempty({ message: "Le prénom est requis" }),
-  lastName: z.string().nonempty({ message: "Le nom est requis" }),
+  firstName: z.string().nonempty({ message: "First name is required" }),
+  lastName: z.string().nonempty({ message: "Last name is required" }),
   dateOfBirth: z.date({
-    required_error: "La date de naissance est requise",
+    required_error: "Date of birth is required",
   }),
   startDate: z.date({
-    required_error: "La date de début est requise",
+    required_error: "Start date is required",
   }),
-  street: z.string().nonempty({ message: "La rue est requise" }),
-  city: z.string().nonempty({ message: "La ville est requise" }),
-  region: z.string().nonempty({ message: "La région est requise" }),
-  zipCode: z.string().nonempty({ message: "Le code postal est requis" }),
-  department: z.string().nonempty({ message: "Le département est requis" }),
+  street: z.string().nonempty({ message: "Street is required" }),
+  city: z.string().nonempty({ message: "City is required" }),
+  state: z.string().nonempty({ message: "State is required" }), 
+  zipCode: z.string().nonempty({ message: "Zip code is required" }),
+  department: z.string().nonempty({ message: "Department is required" }),
 });

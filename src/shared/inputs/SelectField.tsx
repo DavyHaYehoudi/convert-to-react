@@ -35,15 +35,15 @@ const SelectField = ({
       name={name}
       render={() => (
         <FormItem>
-          <FormLabel>{label}</FormLabel>
+          <FormLabel htmlFor={name} >{label}</FormLabel>
           <FormControl>
             {/* Utilisation de Controller pour mieux gérer les props */}
             <Controller
               name={name}
               control={control}
               render={({ field: { onChange, value } }) => (
-                <Select aria-labelledby={label} onValueChange={onChange} value={value}>
-                  <SelectTrigger className="w-full">
+                <Select aria-label={label} onValueChange={onChange} value={value}>
+                  <SelectTrigger className="w-full" aria-labelledby={label}>
                     <SelectValue placeholder={placeholder} />
                   </SelectTrigger>
                   <SelectContent className="bg-[whitesmoke]">

@@ -2,7 +2,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Button } from "../../components/ui/button";
 import { Employee } from "./employee.type";
 import { formatDate } from "../../utils/FormatDate";
-import { ArrowUpDown } from "lucide-react"
+import { ArrowUpDown } from "lucide-react";
 
 // Définir les colonnes du tableau
 export const columnsTable: ColumnDef<Employee>[] = [
@@ -14,11 +14,13 @@ export const columnsTable: ColumnDef<Employee>[] = [
         variant="ghost"
         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
       >
-        Prénom
+        First Name
         <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
-    cell: ({ row }) => <div className="lowercase">{row.getValue("firstName")}</div>
+    cell: ({ row }) => (
+      <div className="lowercase">{row.getValue("firstName")}</div>
+    ),
   },
   {
     accessorKey: "lastName",
@@ -28,7 +30,8 @@ export const columnsTable: ColumnDef<Employee>[] = [
         variant="ghost"
         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
       >
-        Nom
+        Last Name
+        <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
   },
@@ -40,7 +43,8 @@ export const columnsTable: ColumnDef<Employee>[] = [
         variant="ghost"
         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
       >
-        Date de Naissance
+        Date of birth
+        <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
     cell: ({ row }) => <span>{formatDate(row.original.dateOfBirth)}</span>,
@@ -53,7 +57,8 @@ export const columnsTable: ColumnDef<Employee>[] = [
         variant="ghost"
         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
       >
-        Date de Début
+        Start date
+        <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
     cell: ({ row }) => <span>{formatDate(row.original.startDate)}</span>,
@@ -66,7 +71,8 @@ export const columnsTable: ColumnDef<Employee>[] = [
         variant="ghost"
         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
       >
-        Rue
+        Street
+        <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
   },
@@ -78,19 +84,21 @@ export const columnsTable: ColumnDef<Employee>[] = [
         variant="ghost"
         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
       >
-        Ville
+        City
+        <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
   },
   {
-    accessorKey: "region",
+    accessorKey: "state",
     enableSorting: true,
     header: ({ column }) => (
       <Button
         variant="ghost"
         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
       >
-        Région
+        State
+        <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
   },
@@ -102,7 +110,8 @@ export const columnsTable: ColumnDef<Employee>[] = [
         variant="ghost"
         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
       >
-        Code Postal
+        Zip Code
+        <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
   },
@@ -114,7 +123,8 @@ export const columnsTable: ColumnDef<Employee>[] = [
         variant="ghost"
         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
       >
-        Département
+        Department
+        <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
   },
