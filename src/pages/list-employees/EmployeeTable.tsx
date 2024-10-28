@@ -83,7 +83,7 @@ export function EmployeeTable({ data }: EmployeeTableProps) {
           </SelectContent>
         </Select>
         <Input
-          placeholder="Rechercher..."
+          placeholder="Search..."
           onChange={(e) => table.setGlobalFilter(String(e.target.value))}
           className="max-w-sm rounded"
         />
