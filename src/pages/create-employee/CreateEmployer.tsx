@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Modal from "@davy-dev/react-modal-plugin";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -11,9 +10,10 @@ import ClassicInputField from "../../shared/inputs/ClassicInputField";
 import SelectField from "../../shared/inputs/SelectField";
 import { useFormContext } from "../../store/UseFormContext";
 import { states } from "./states";
+import { openModal } from "@davy-dev/react-modal-plugin";
+// import { toast } from "sonner";
 
 const CreateEmployer = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const { addEmployee, employees } = useFormContext();
   console.log("employees:", employees);
 
@@ -36,12 +36,14 @@ const CreateEmployer = () => {
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
     addEmployee(values); // Ajoute l'employé dans la liste des employés du contexte
-    setIsOpen(true); // Ouvre la modale à la soumission réussie
+    if (openModal) {
+      openModal(); // Ouvre la modale à la soumission réussie
+    }
     form.reset(); // Réinitialise le formulaire d'enregistrement
   }
-
-  const closeModal = () => setIsOpen(false);
-
+  // const handleConfirm = () => {
+  //   toast("Successfull creation of employee");
+  // };
   return (
     <div className="max-w-lg mx-auto mt-10 p-6 bg-white rounded-2xl shadow-lg">
       <Form {...form}>
@@ -112,13 +114,11 @@ const CreateEmployer = () => {
 
       {/* Intégration de la modale */}
       <Modal
-        isOpen={isOpen}
-        onClose={closeModal}
         title="SUCCESSFUL CREATION"
         // title={<><h3>Rich title with HTML</h3><p>With one paragraph</p><p>and a second paragraph</p> </> }
         showCancelButton={false}
         okButtonText="Close"
-        okButtonClassName="text-red-ok-button"
+        // onConfirm={handleConfirm}
       >
         {employees && employees.length > 0 && (
           <div className="m-5">
